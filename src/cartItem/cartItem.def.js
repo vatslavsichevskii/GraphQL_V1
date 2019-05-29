@@ -3,20 +3,22 @@ const { gql } = require("apollo-server");
 const typeDef = gql`
   type CartItem {
     _id: String
-    title: String
-    price: Int
-    categoryId(id: ID!): Category
-    category: Category
+    totalSum: Int
+    quantity: Int
+    productId(id: ID!): Product
+    cartId(id: ID!): Cart
+    product: Product
+    cart: Cart
   }
 
   extend type Query {
-    products: [CartItem]
-    product(_id: ID!): CartItem
+    cartItems: [CartItem]
+    cartItem(_id: ID!): CartItem
   }
 
   extend type Mutation {
-    createCartItem(title: String! price: Int! categoryId: ID!): CartItem
-    editCartItem(_id: String! title: String price: Int): CartItem
+    createCartItem(totalSum: Int quantity: Int! productId: ID! cartId: ID!): CartItem
+    editCartItem(_id: String! totalSum: Int quantity: Int!): CartItem
     deleteCartItem(_id: String!): CartItem
   }
 `;

@@ -6,7 +6,9 @@ const typeDef = gql`
     title: String
     price: Int
     categoryId(id: ID!): Category
+    ownerId(id: ID!): User
     category: Category
+    owner: User
   }
 
   extend type Query {
@@ -15,7 +17,7 @@ const typeDef = gql`
   }
 
   extend type Mutation {
-    createProduct(title: String! price: Int! categoryId: ID!): Product
+    createProduct(title: String! price: Int! categoryId: ID! ownerId: ID!): Product
     editProduct(_id: String! title: String price: Int): Product
     deleteProduct(_id: String!): Product
   }
